@@ -243,3 +243,211 @@
 - Los valores configurables estarán en `ConstantesJuego`.
 - La interfaz utilizará MVC y Observer.
 
+## Ahora adjunto el código del UML y también la imagen del mismo
+
+@startuml
+
+title Mutant Battle - Diagrama UML
+
+' =========================
+' INTERFACES
+' =========================
+
+interface IPower {
+    +usarPoder(): void
+    +obtenerCapacidadDanio(): int
+    +aumentarDanio(): void
+}
+
+interface Observador {
+    +actualizar(): void
+}
+
+' =========================
+' ENUMERACION
+' =========================
+
+enum AccionCombate {
+    ATACAR
+    DEFENDER
+}
+
+' =========================
+' PODERES
+' =========================
+
+abstract class Poder {
+    -capacidadDanio: int
+    +usarPoder(): void
+    +obtenerCapacidadDanio(): int
+    +aumentarDanio(): void
+}
+
+class PoderTirarFuego {
+    +usarPoder(): void
+}
+
+class PoderTirarFlechas {
+    +usarPoder(): void
+}
+
+class PoderTirarCablesElectrocutantes {
+    +usarPoder(): void
+}
+
+class PoderTirarNieve {
+    +usarPoder(): void
+}
+
+class PoderTirarBorbujas {
+    +usarPoder(): void
+}
+
+' =========================
+' MODELO
+' =========================
+
+class Mutante {
+    -nombre: String
+    -energiaActual: double
+    -capacidadDefensa: int
+    -velocidad: double
+    -posicionX: double
+    -posicionY: double
+    -poder: IPower
+    -equipo: Equipo
+
+    +mover(): void
+    +recibirDanio(danio: double): void
+    +estaVivo(): boolean
+    +decidirAccion(): AccionCombate
+    +aumentarPoder(): void
+}
+
+' =========================
+' GAME
+' =========================
+
+class Equipo {
+    -mutantes: List<Mutante>
+    -color: String
+    -simbolo: String
+
+    +agregarMutante(mutante: Mutante): void
+    +obtenerVivos(): int
+    +obtenerMuertos(): int
+    +estaDerrotado(): boolean
+}
+
+class CampoBatalla {
+    -ancho: double
+    -alto: double
+    -equipoUno: Equipo
+    -equipoDos: Equipo
+
+    +obtenerAncho(): double
+    +obtenerAlto(): double
+    +obtenerEquipoUno(): Equipo
+    +obtenerEquipoDos(): Equipo
+    +terminoBatalla(): boolean
+    +obtenerGanador(): Equipo
+}
+
+' =========================
+' CONTROL
+' =========================
+
+class ControlBatalla {
+    -campoBatalla: CampoBatalla
+    -administradorCombate: AdministradorCombate
+    -hilosMutantes: List<HiloMutante>
+
+    +iniciarBatalla(tamanoEquipo: int): void
+    +crearEquipos(tamanoEquipo: int): void
+    +iniciarHilos(): void
+    +detenerBatalla(): void
+    +terminoBatalla(): boolean
+}
+
+class HiloMutante {
+    -mutante: Mutante
+    -campoBatalla: CampoBatalla
+    -administradorCombate: AdministradorCombate
+
+    +run(): void
+}
+
+class AdministradorCombate {
+    -campoBatalla: CampoBatalla
+    -radioCombate: double
+
+    +buscarEncuentros(mutante: Mutante): void
+    +ejecutarCombate(mutanteUno: Mutante, mutanteDos: Mutante): void
+    +calcularDistancia(mutanteUno: Mutante, mutanteDos: Mutante): double
+    +calcularDanio(atacante: Mutante, defensor: Mutante): double
+}
+
+' =========================
+' UI
+' =========================
+
+class VistaBatalla {
+    -campoBatalla: CampoBatalla
+
+    +dibujarCampo(): void
+    +dibujarMutantes(): void
+    +actualizar(): void
+    +mostrarGanador(equipo: Equipo): void
+}
+
+class ControladorInterfaz {
+    -controlBatalla: ControlBatalla
+    -vistaBatalla: VistaBatalla
+
+    +iniciarNuevaBatalla(tamanoEquipo: int): void
+    +actualizarVista(): void
+}
+
+' =========================
+' CONSTANTES
+' =========================
+
+class ConstantesJuego
+
+' =========================
+' RELACIONES
+' =========================
+
+IPower <|.. Poder
+
+Poder <|-- PoderTirarFuego
+Poder <|-- PoderTirarFlechas
+Poder <|-- PoderTirarCablesElectrocutantes
+Poder <|-- PoderTirarNieve
+Poder <|-- PoderTirarBorbujas
+
+Mutante --> IPower
+Mutante --> Equipo
+Mutante --> AccionCombate
+
+CampoBatalla *-- Equipo
+
+ControlBatalla --> CampoBatalla
+ControlBatalla --> AdministradorCombate
+ControlBatalla --> HiloMutante
+
+HiloMutante --> Mutante
+HiloMutante --> CampoBatalla
+HiloMutante --> AdministradorCombate
+
+AdministradorCombate --> CampoBatalla
+
+VistaBatalla ..|> Observador
+VistaBatalla --> CampoBatalla
+
+ControladorInterfaz --> ControlBatalla
+ControladorInterfaz --> VistaBatalla
+
+@enduml
+
+<img width="837" height="821" alt="image" src="https://github.com/user-attachments/assets/87026d37-1e9a-4f09-89b3-084322700249" />
