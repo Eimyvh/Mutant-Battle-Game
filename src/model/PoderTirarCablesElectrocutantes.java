@@ -8,6 +8,6 @@ public class PoderTirarCablesElectrocutantes extends Poder {
 
     @Override
     public void usarPoder() {
-        System.out.println("El mutante lanza cables electrocutantes.");
+        System.out.println(">>>>>  --{  --{  --{  --{  --{");
     }
 }

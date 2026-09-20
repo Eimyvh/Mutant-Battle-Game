@@ -8,6 +8,6 @@ public class PoderTirarBorbujas extends Poder {
 
     @Override
     public void usarPoder() {
-        System.out.println("El mutante lanza burbujas.");
+        System.out.println(">>>>> (°)  (°)  (°)  (°)  (°) ");
     }
 }

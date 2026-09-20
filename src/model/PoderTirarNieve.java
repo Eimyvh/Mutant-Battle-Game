@@ -8,6 +8,6 @@ public class PoderTirarNieve extends Poder {
 
     @Override
     public void usarPoder() {
-        System.out.println("El mutante lanza nieve.");
+        System.out.println(">>>>>  *  *  *  *  *  ");
     }
 }

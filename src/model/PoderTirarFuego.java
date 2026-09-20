@@ -8,6 +8,6 @@ public class PoderTirarFuego extends Poder {
 
     @Override
     public void usarPoder() {
-        System.out.println("El mutante lanza fuego.");
+        System.out.println(">>>>> ~  ~  ~  ~  ~ ");
     }
 }

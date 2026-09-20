@@ -8,6 +8,6 @@ public class PoderTirarFlechas extends Poder {
 
     @Override
     public void usarPoder() {
-        System.out.println("El mutante lanza flechas.");
+        System.out.println(">>>>>  -->  -->  -->  -->  -->");
     }
 }
