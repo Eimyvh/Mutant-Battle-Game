@@ -1,0 +1,8 @@
+//Tuve problemas con VS Code porque no reconocía la carpeta donde estaban los archivos así que 
+//agregué esta configuración que permite reconocerlos.
+
+{
+    "java.project.sourcePaths": [
+        "src"
+    ]
+}
