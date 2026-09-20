@@ -1,5 +1,7 @@
 package model;
 
+import constants.ConstantesJuego;
+
 public abstract class Poder implements IPower {
     protected int capacidadDanio;
 
@@ -10,7 +12,7 @@ public abstract class Poder implements IPower {
 
     @Override
     public void aumentarDanio() {
-        if (capacidadDanio < 7) {
+        if (capacidadDanio < ConstantesJuego.MAX_CAPACIDAD_DANIO) {
             capacidadDanio++;
         }
     }
