@@ -3,6 +3,53 @@
 
 ## Especificación de objetos
 
+## Paquetes
+
+### model
+
+Contiene las clases relacionadas con los mutantes y sus poderes.
+- `Mutante`
+- `Poder`
+- `PoderTirarFuego`
+- `PoderTirarFlechas`
+- `PoderTirarCablesElectrocutantes`
+- `PoderTirarNieve`
+- `PoderTirarBorbujas`
+- `IPower`
+
+### game
+
+Contiene las clases encargadas de representar el juego y el campo de batalla.
+- `Equipo`
+- `CampoBatalla`
+
+### control
+
+Contiene las clases encargadas de controlar el movimiento, los hilos y los combates.
+- `ControlBatalla`
+- `HiloMutante`
+- `AdministradorCombate`
+
+### ui
+
+Contiene las clases encargadas de la interfaz gráfica.
+- `VistaBatalla`
+- `ControladorInterfaz`
+- `Observador`
+
+### constants
+
+Contiene las constantes utilizadas por el juego.
+- `ConstantesJuego`
+
+## Paquetes de prueba
+
+Cada capa tendrá su propio programa `main` para realizar pruebas independientes:
+- `model`: pruebas de mutantes y poderes.
+- `game`: pruebas de equipos y campo de batalla.
+- `control`: pruebas de movimiento, combate e hilos.
+- `ui`: pruebas de la interfaz.
+
 ### 1. Mutante
 
 **Atributos**
