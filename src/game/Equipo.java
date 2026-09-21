@@ -18,6 +18,15 @@ public class Equipo {
         mutantes.add(mutante);
     }
 
+    public List<Mutante> obtenerMutantes() {
+        return mutantes;
+    }
+    public String obtenerColor() {
+        return color;
+    }
+    public String obtenerSimbolo() {
+        return simbolo;
+    }
     public int obtenerVivos() {  //Recorre todos los mutantes, si hay vivos los suma, si hay muertos no los suma.
         int vivos = 0;
         for (Mutante mutante : mutantes) {

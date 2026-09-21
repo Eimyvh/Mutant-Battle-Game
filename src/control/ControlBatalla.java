@@ -175,5 +175,37 @@ public class ControlBatalla {
     }
     public void iniciarBatalla(int tamanoEquipo) {
         crearEquipos(tamanoEquipo);
+        iniciarHilos();
+    }
+    public void iniciarHilos() {
+        hilosMutantes.clear();
+
+        for (Mutante mutante : campoBatalla.obtenerEquipoUno().obtenerMutantes()) {
+            HiloMutante hilo = new HiloMutante(
+                mutante,
+                campoBatalla,
+                administradorCombate
+            );
+            hilosMutantes.add(hilo);
+            hilo.start();
+        }
+
+        for (Mutante mutante : campoBatalla.obtenerEquipoDos().obtenerMutantes()) {
+            HiloMutante hilo = new HiloMutante(
+                mutante,
+                campoBatalla,
+                administradorCombate
+            );
+            hilosMutantes.add(hilo);
+            hilo.start();
+        }
+    }
+    public void detenerBatalla() {
+        for (HiloMutante hilo : hilosMutantes) {
+            hilo.interrupt();
+        }
+    }
+    public boolean terminoBatalla() {
+        return campoBatalla != null && campoBatalla.terminoBatalla();
     }
 }

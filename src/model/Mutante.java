@@ -39,6 +39,33 @@ public class Mutante {
     public boolean estaVivo() { //boolean que nos va a permitir saber si el mutante está vivo o no
         return energiaActual > 0;
     }
+    public double obtenerPosicionX() {
+        return posicionX;
+    }
+
+    public double obtenerPosicionY() {
+        return posicionY;
+    }
+    public void establecerPosicion(double posicionX, double posicionY) {
+        this.posicionX = posicionX;
+        this.posicionY = posicionY;
+    }
+    public Equipo obtenerEquipo() {
+        return equipo;
+    }
+    public String obtenerNombre() {
+        return nombre;
+    }
+    public double obtenerEnergiaActual() {
+        return energiaActual;
+    }
+    public int obtenerCapacidadDefensa() {
+        return capacidadDefensa;
+    }
+
+    public IPower obtenerPoder() {
+        return poder;
+    }
     public AccionCombate decidirAccion() { //Para que el mutante pueda decidir de manera aleatoria una de las dos opciones: atacar o defender.
     if (Math.random() < 0.5) {
         return AccionCombate.ATACAR;
