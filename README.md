@@ -228,11 +228,13 @@ Cada capa tendrá su propio programa `main` para realizar pruebas independientes
 **Atributos**
 - `controlBatalla: ControlBatalla`
 - `vistaBatalla: VistaBatalla`
+- `observadores: List<Observador>`
 
 **Métodos**
 - `iniciarNuevaBatalla(tamanoEquipo: int): void`
 - `actualizarVista(): void`
-
+- `registrarObservador(observador: Observador): void`
+- `notificarObservadores(): void`
 -------------------------------------------
 
 ### 15. ConstantesJuego
@@ -281,6 +283,7 @@ Cada capa tendrá su propio programa `main` para realizar pruebas independientes
 - `HiloMutante` trabaja con un `Mutante`.
 - `AdministradorCombate` coordina los enfrentamientos.
 - `VistaBatalla` implementa `Observador`.
+- `ControladorInterfaz` registra y notifica a los `Observador`.
 
 ## Decisiones de diseño
 
@@ -454,9 +457,12 @@ class VistaBatalla {
 class ControladorInterfaz {
     -controlBatalla: ControlBatalla
     -vistaBatalla: VistaBatalla
+    -observadores: List<Observador>
 
     +iniciarNuevaBatalla(tamanoEquipo: int): void
     +actualizarVista(): void
+    +registrarObservador(observador: Observador): void
+    +notificarObservadores(): void
 }
 
 ' =========================
@@ -498,8 +504,7 @@ VistaBatalla --> CampoBatalla
 
 ControladorInterfaz --> ControlBatalla
 ControladorInterfaz --> VistaBatalla
+ControladorInterfaz --> Observador
 
 @enduml
-
-<img width="862" height="907" alt="image" src="https://github.com/user-attachments/assets/cc8c30b5-9b0b-4cce-b689-391b1f67f007" />
 
