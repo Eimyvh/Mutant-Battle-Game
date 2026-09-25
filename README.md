@@ -508,3 +508,4 @@ ControladorInterfaz --> Observador
 
 @enduml
 
+<img width="1112" height="908" alt="image" src="https://github.com/user-attachments/assets/9bc96e96-5778-494a-93a5-9b9412243180" />
