@@ -501,4 +501,5 @@ ControladorInterfaz --> VistaBatalla
 
 @enduml
 
+<img width="862" height="907" alt="image" src="https://github.com/user-attachments/assets/cc8c30b5-9b0b-4cce-b689-391b1f67f007" />
 
