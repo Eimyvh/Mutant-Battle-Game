@@ -1,3 +1,4 @@
+//Eimy Vega Hidalgo 2026097911
 package control;
 
 import game.CampoBatalla;
@@ -14,27 +15,20 @@ public class HiloMutante extends Thread {
         this.administradorCombate = administradorCombate;
     }
 
-
 @Override
 public void run() { 
-
     while (mutante.estaVivo() && !campoBatalla.terminoBatalla()) {
         mutante.mover();
-
         double y = mutante.obtenerPosicionY();
-
         if (Math.random() < 0.1) {
             y += (Math.random() < 0.5 ? -1 : 1) * mutante.obtenerEnergiaActual() * 0.02;
         }
-
         mutante.establecerPosicion(
             mutante.obtenerPosicionX(),
             y
         );
-
         controlarLimites();
-        administradorCombate.buscarEncuentros(mutante);
-        
+        administradorCombate.buscarEncuentros(mutante);        
         try {
             Thread.sleep(100);
         } catch (InterruptedException e) {
@@ -43,15 +37,14 @@ public void run() {
         }
     }
 }
-private void controlarLimites() {
 
+private void controlarLimites() {
         double x = mutante.obtenerPosicionX();
         double y = mutante.obtenerPosicionY();
 
         if (x >= campoBatalla.obtenerAncho() || x <= 0) {
             mutante.invertirDireccionX();
         }
-
         if (y >= campoBatalla.obtenerAlto() || y <= 0) {
             mutante.invertirDireccionY();
         }

@@ -1,4 +1,6 @@
+//Eimy Vega Hidalgo 20206097911
 package game;
+
 import java.util.ArrayList;
 import java.util.List;
 import model.Mutante;
@@ -13,11 +15,9 @@ public class Equipo {
         this.color = color;
         this.simbolo = simbolo;
     }
-
     public void agregarMutante(Mutante mutante) {
         mutantes.add(mutante);
     }
-
     public List<Mutante> obtenerMutantes() {
         return mutantes;
     }

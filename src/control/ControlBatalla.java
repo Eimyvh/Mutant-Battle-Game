@@ -1,3 +1,4 @@
+//Eimy Vega Hidalgo 2026097911
 package control;
 
 import constants.ConstantesJuego;
@@ -17,7 +18,7 @@ import model.PoderTirarNieve;
 public class ControlBatalla {
     private CampoBatalla campoBatalla;
     private AdministradorCombate administradorCombate;
-    private List<HiloMutante> hilosMutantes;
+    private final List<HiloMutante> hilosMutantes;
 
     public ControlBatalla() {
         this.hilosMutantes = new ArrayList<>();
@@ -56,26 +57,21 @@ public class ControlBatalla {
             ) + ConstantesJuego.MIN_CAPACIDAD_DANIO;
 
             int numeroPoder = random.nextInt(5);
-
             IPower poderUno;
 
             switch (numeroPoder) {
                 case 0:
                     poderUno = new PoderTirarBorbujas(danioUno);
                     break;
-
                 case 1:
                     poderUno = new PoderTirarCablesElectrocutantes(danioUno);
                     break;
-
                 case 2:
                     poderUno = new PoderTirarFlechas(danioUno);
                     break;
-
                 case 3:
                     poderUno = new PoderTirarFuego(danioUno);
                     break;
-
                 default:
                     poderUno = new PoderTirarNieve(danioUno);
                     break;
@@ -92,12 +88,16 @@ public class ControlBatalla {
                     - ConstantesJuego.VELOCIDAD_MINIMA
             );
             double direccionXUno = -1;
-            double direccionYUno = 0;
+            double direccionYUno;
+
+            if (random.nextBoolean()) {
+                direccionYUno = 1;
+            } else {
+                direccionYUno = -1;
+            }
 
             double posicionXUno = ConstantesJuego.ANCHO_CAMPO - 10;
-
             double posicionYUno = 10 + (i - 1) * 8;
-
             Mutante mutanteUno = new Mutante(
                 "Mutante Rojo " + i,
                 ConstantesJuego.ENERGIA_INICIAL,
@@ -112,33 +112,27 @@ public class ControlBatalla {
             );
 
             equipoUno.agregarMutante(mutanteUno);
-
             int danioDos = random.nextInt(
                 ConstantesJuego.MAX_CAPACIDAD_DANIO_INICIAL
                 - ConstantesJuego.MIN_CAPACIDAD_DANIO + 1
             ) + ConstantesJuego.MIN_CAPACIDAD_DANIO;
 
             int numeroPoderDos = random.nextInt(5);
-
             IPower poderDos;
 
             switch (numeroPoderDos) {
                 case 0:
                     poderDos = new PoderTirarBorbujas(danioDos);
                     break;
-
                 case 1:
                     poderDos = new PoderTirarCablesElectrocutantes(danioDos);
                     break;
-
                 case 2:
                     poderDos = new PoderTirarFlechas(danioDos);
                     break;
-
                 case 3:
                     poderDos = new PoderTirarFuego(danioDos);
                     break;
-
                 default:
                     poderDos = new PoderTirarNieve(danioDos);
                     break;
@@ -155,9 +149,8 @@ public class ControlBatalla {
                     - ConstantesJuego.VELOCIDAD_MINIMA
                 );
             double direccionXDos = 1;
-            double direccionYDos = 0;
+            double direccionYDos = direccionYUno;
             double posicionXDos = 10;
-
             double posicionYDos = 10 + (i - 1) * 8;
 
             Mutante mutanteDos = new Mutante(
@@ -176,13 +169,16 @@ public class ControlBatalla {
             equipoDos.agregarMutante(mutanteDos);
         }
     }
+
     public void iniciarBatalla(int tamanoEquipo) {
         crearEquipos(tamanoEquipo);
         iniciarHilos();
     }
+
     public CampoBatalla obtenerCampoBatalla() {
         return campoBatalla;
     }
+
     public void iniciarHilos() {
         hilosMutantes.clear();
 
@@ -206,11 +202,13 @@ public class ControlBatalla {
             hilo.start();
         }
     }
+
     public void detenerBatalla() {
         for (HiloMutante hilo : hilosMutantes) {
             hilo.interrupt();
         }
     }
+    
     public boolean terminoBatalla() {
         return campoBatalla != null && campoBatalla.terminoBatalla();
     }

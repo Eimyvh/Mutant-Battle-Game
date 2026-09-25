@@ -1,3 +1,4 @@
+//Eimy Vega Hidalgo 2026097911
 package control;
 
 import game.CampoBatalla;
@@ -18,7 +19,6 @@ public class AdministradorCombate {
 
         Equipo equipoUno = campoBatalla.obtenerEquipoUno();
         Equipo equipoDos = campoBatalla.obtenerEquipoDos();
-
         List<Mutante> enemigos;
 
         if (mutante.obtenerEquipo() == equipoUno) {
@@ -28,19 +28,16 @@ public class AdministradorCombate {
         }
 
         for (Mutante enemigo : enemigos) {
-
             if (enemigo.estaVivo()) {
-
                 double distancia = calcularDistancia(mutante, enemigo);
-
                 if (distancia <= radioCombate &&
                     mutante.obtenerNombre().compareTo(enemigo.obtenerNombre()) < 0) {
-
                     ejecutarCombate(mutante, enemigo);
                 }
             }
         }
     }
+
     public void ejecutarCombate(Mutante mutanteUno, Mutante mutanteDos) {
 
         AccionCombate accionUno = mutanteUno.decidirAccion();
@@ -48,10 +45,10 @@ public class AdministradorCombate {
 
         if (accionUno == AccionCombate.ATACAR) {
             double danio = calcularDanio(mutanteUno, mutanteDos);
-
             if (accionDos == AccionCombate.DEFENDER) {
                 danio = danio / mutanteDos.obtenerCapacidadDefensa();
             }
+
             boolean defensorEstabaVivo = mutanteDos.estaVivo();
             mutanteDos.recibirDanio(danio);
 
@@ -59,7 +56,6 @@ public class AdministradorCombate {
                 mutanteUno.aumentarPoder();
             }
         }
-
         if (accionDos == AccionCombate.ATACAR &&
             mutanteUno.estaVivo()) {
             double danio = calcularDanio(mutanteDos, mutanteUno);
@@ -74,17 +70,17 @@ public class AdministradorCombate {
             }
         }
     }
+
     public double calcularDanio(Mutante atacante, Mutante defensor) {
         return atacante.obtenerPoder().obtenerCapacidadDanio();
     }
+
     public double calcularDistancia(Mutante mutanteUno, Mutante mutanteDos) { //Usamos la fórmula de distancia entre dos puntos.
 
         double diferenciaX = mutanteUno.obtenerPosicionX()
             - mutanteDos.obtenerPosicionX();
-
         double diferenciaY = mutanteUno.obtenerPosicionY()
             - mutanteDos.obtenerPosicionY();
-
         return Math.sqrt(
             diferenciaX * diferenciaX
             + diferenciaY * diferenciaY

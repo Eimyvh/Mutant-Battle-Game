@@ -1,3 +1,5 @@
+//Eimy Vega Hidalgo 2026097911
+
 package constants;
 
 public class ConstantesJuego {
