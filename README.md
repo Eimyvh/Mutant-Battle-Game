@@ -57,6 +57,8 @@ Cada capa tendrá su propio programa `main` para realizar pruebas independientes
 - `energiaActual: double`
 - `capacidadDefensa: int`
 - `velocidad: double`
+- direccionX : double
+- direccionY : double
 - `posicionX: double`
 - `posicionY: double`
 - `poder: IPower`
@@ -359,6 +361,8 @@ class Mutante {
     -energiaActual: double
     -capacidadDefensa: int
     -velocidad: double
+    -direccionX: double
+    -direccionY: double
     -posicionX: double
     -posicionY: double
     -poder: IPower
