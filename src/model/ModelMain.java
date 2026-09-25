@@ -7,15 +7,17 @@ public class ModelMain {
         PoderTirarFuego poder = new PoderTirarFuego(2);
 
         Mutante mutante = new Mutante(
-            "Mutante 1",
-            100,
-            2,
-            1,
-            10,
-            10,
-            poder,
-            null
-        );
+    "Mutante 1",
+    100,
+    2,
+    1,
+    1,
+    0,
+    10,
+    10,
+    poder,
+    null
+);
 
         System.out.println("¿Está vivo? " + mutante.estaVivo());
 

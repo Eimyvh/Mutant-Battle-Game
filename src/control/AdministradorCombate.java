@@ -33,7 +33,9 @@ public class AdministradorCombate {
 
                 double distancia = calcularDistancia(mutante, enemigo);
 
-                if (distancia <= radioCombate) {
+                if (distancia <= radioCombate &&
+                    mutante.obtenerNombre().compareTo(enemigo.obtenerNombre()) < 0) {
+
                     ejecutarCombate(mutante, enemigo);
                 }
             }

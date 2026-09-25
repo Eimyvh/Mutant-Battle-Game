@@ -20,6 +20,18 @@ public void run() {
 
     while (mutante.estaVivo() && !campoBatalla.terminoBatalla()) {
         mutante.mover();
+
+        double y = mutante.obtenerPosicionY();
+
+        if (Math.random() < 0.1) {
+            y += (Math.random() < 0.5 ? -1 : 1) * mutante.obtenerEnergiaActual() * 0.02;
+        }
+
+        mutante.establecerPosicion(
+            mutante.obtenerPosicionX(),
+            y
+        );
+
         controlarLimites();
         administradorCombate.buscarEncuentros(mutante);
         
@@ -36,11 +48,12 @@ private void controlarLimites() {
         double x = mutante.obtenerPosicionX();
         double y = mutante.obtenerPosicionY();
 
-        if (x > campoBatalla.obtenerAncho()) {
-            x = 0;
+        if (x >= campoBatalla.obtenerAncho() || x <= 0) {
+            mutante.invertirDireccionX();
         }
-        if (y > campoBatalla.obtenerAlto()) {
-            y = 0;
+
+        if (y >= campoBatalla.obtenerAlto() || y <= 0) {
+            mutante.invertirDireccionY();
         }
         mutante.establecerPosicion(x, y);
     }

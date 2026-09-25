@@ -1,5 +1,4 @@
 package model;
-
 import game.Equipo;
 
 public class Mutante {
@@ -8,29 +7,41 @@ public class Mutante {
     private double energiaActual;
     private int capacidadDefensa;
     private double velocidad;
+    private double direccionX;
+    private double direccionY;
     private double posicionX;
     private double posicionY;
     private IPower poder;
     private Equipo equipo;
 
     public Mutante(String nombre, double energiaActual, int capacidadDefensa,
-               double velocidad, double posicionX, double posicionY,
-               IPower poder, Equipo equipo) {
+               double velocidad, double direccionX, double direccionY,
+                double posicionX, double posicionY,
+                IPower poder, Equipo equipo) {
 
     this.nombre = nombre;
     this.energiaActual = energiaActual;
     this.capacidadDefensa = capacidadDefensa;
     this.velocidad = velocidad;
+    this.direccionX = direccionX;
+    this.direccionY = direccionY;
     this.posicionX = posicionX;
     this.posicionY = posicionY;
     this.poder = poder;
     this.equipo = equipo;
     }
     public void mover() {
-        posicionX += velocidad;
-        posicionY += velocidad;
+        posicionX += velocidad * direccionX;
+        posicionY += velocidad * direccionY;
     }
-    public void recibirDanio(double danio) {
+    public void invertirDireccionX() {
+        direccionX *= -1;
+    }
+
+    public void invertirDireccionY() {
+        direccionY *= -1;
+    }
+        public void recibirDanio(double danio) {
         energiaActual -= danio;
         if (energiaActual < 0) { //para que la energía no quede negativa sino en 0.
             energiaActual = 0;

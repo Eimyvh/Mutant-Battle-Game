@@ -39,8 +39,8 @@ public class ControlBatalla {
         Equipo equipoUno = new Equipo("Rojo", "R");
         Equipo equipoDos = new Equipo("Azul", "A");
         campoBatalla = new CampoBatalla(
-            100, //Temporalmente usaremos esta config. donde el campo es 100x100
-            100,
+            ConstantesJuego.ANCHO_CAMPO,
+            ConstantesJuego.ALTO_CAMPO,
             equipoUno,
             equipoDos
         );
@@ -90,19 +90,21 @@ public class ControlBatalla {
                 + random.nextDouble() * (
                     ConstantesJuego.VELOCIDAD_MAXIMA
                     - ConstantesJuego.VELOCIDAD_MINIMA
-                );
+            );
+            double direccionXUno = -1;
+            double direccionYUno = 0;
 
-            double posicionXUno = random.nextDouble()
-                * ConstantesJuego.ANCHO_CAMPO;
+            double posicionXUno = ConstantesJuego.ANCHO_CAMPO - 10;
 
-            double posicionYUno = random.nextDouble()
-                * ConstantesJuego.ALTO_CAMPO;
+            double posicionYUno = 10 + (i - 1) * 8;
 
             Mutante mutanteUno = new Mutante(
                 "Mutante Rojo " + i,
                 ConstantesJuego.ENERGIA_INICIAL,
                 defensaUno,
                 velocidadUno,
+                direccionXUno,
+                direccionYUno,
                 posicionXUno,
                 posicionYUno,
                 poderUno,
@@ -152,18 +154,19 @@ public class ControlBatalla {
                     ConstantesJuego.VELOCIDAD_MAXIMA
                     - ConstantesJuego.VELOCIDAD_MINIMA
                 );
+            double direccionXDos = 1;
+            double direccionYDos = 0;
+            double posicionXDos = 10;
 
-            double posicionXDos = random.nextDouble()
-                * ConstantesJuego.ANCHO_CAMPO;
-
-            double posicionYDos = random.nextDouble()
-                * ConstantesJuego.ALTO_CAMPO;
+            double posicionYDos = 10 + (i - 1) * 8;
 
             Mutante mutanteDos = new Mutante(
                 "Mutante Azul " + i,
                 ConstantesJuego.ENERGIA_INICIAL,
                 defensaDos,
                 velocidadDos,
+                direccionXDos,
+                direccionYDos,
                 posicionXDos,
                 posicionYDos,
                 poderDos,
@@ -176,6 +179,9 @@ public class ControlBatalla {
     public void iniciarBatalla(int tamanoEquipo) {
         crearEquipos(tamanoEquipo);
         iniciarHilos();
+    }
+    public CampoBatalla obtenerCampoBatalla() {
+        return campoBatalla;
     }
     public void iniciarHilos() {
         hilosMutantes.clear();
